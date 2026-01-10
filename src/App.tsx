@@ -1,6 +1,6 @@
 import Container from "./ui/Container"
 import machine from "./assets/machine.png"
-import { Alooz, Coke, Drinko, Lays, Lemon, Mojo, Potato, Zeros } from "./ui/Icons"
+import { Alooz, BirthDayCake, CakeSlice, CircleCake, Coke, Drinko, Lays, Lemon, Mojo, Potato, SmallCake, Zeros } from "./ui/Icons"
 
 function App() {
 
@@ -39,10 +39,18 @@ function App() {
                 <h1 className="absolute top-22 left-[58px] text-white font-bold text-[10px]">Drinko</h1>
               </div>
             </div>
+
+
             <div className="bg-1">
               <div className="relative">
                 <Potato w={110}></Potato>
                 <h1 className="absolute top-10 left-7 text-white font-bold -rotate-[30deg]">Potato</h1>
+              </div>
+            </div>
+            <div className="bg-1">
+              <div className="relative">
+                <Zeros w={110}></Zeros>
+                <h1 className="absolute top-10 left-9 text-white font-bold">Zeros</h1>
               </div>
             </div>
             <div className="bg-1">
@@ -57,11 +65,19 @@ function App() {
                 <h1 className="absolute top-10 left-9 text-white font-bold">Lays</h1>
               </div>
             </div>
+
+
             <div className="bg-1">
-              <div className="relative">
-                <Zeros w={110}></Zeros>
-                <h1 className="absolute top-10 left-9 text-white font-bold">Zeros</h1>
-              </div>
+              <SmallCake w={110}></SmallCake>
+            </div>
+            <div className="bg-1">
+              <BirthDayCake w={110}></BirthDayCake>
+            </div>
+            <div className="bg-1">
+              <CakeSlice w={110}></CakeSlice>
+            </div>
+            <div className="bg-1">
+              <CircleCake w={110}></CircleCake>
             </div>
           </div>
         </div>
