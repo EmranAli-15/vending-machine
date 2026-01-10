@@ -1,6 +1,6 @@
 import Container from "./ui/Container"
 import machine from "./assets/machine.png"
-import { Coke, Drinko, Lemon, Mojo, Potato } from "./ui/Icons"
+import { Alooz, Coke, Drinko, Lays, Lemon, Mojo, Potato, Zeros } from "./ui/Icons"
 
 function App() {
 
@@ -16,16 +16,28 @@ function App() {
         <div className="col-span-2">
           <div className="grid grid-cols-4 gap-4">
             <div className="bg-1">
-              <Coke w={150}></Coke>
+              <div className="relative">
+                <Coke w={150}></Coke>
+                <h1 className="absolute top-23 left-[49px] text-white font-bold text-[10px]">Coka~Cola</h1>
+              </div>
             </div>
             <div className="bg-1">
-              <Mojo w={150}></Mojo>
+              <div className="relative">
+                <Mojo w={150}></Mojo>
+                <h1 className="absolute top-23 left-[63px] text-white font-bold text-[10px]">Mojo</h1>
+              </div>
             </div>
             <div className="bg-1">
-              <Lemon w={150}></Lemon>
+              <div className="relative">
+                <Lemon w={150}></Lemon>
+                <h1 className="absolute top-23 left-[58px] text-white font-bold text-[10px]">Lemon</h1>
+              </div>
             </div>
             <div className="bg-1">
-              <Drinko w={150}></Drinko>
+              <div className="relative">
+                <Drinko w={150}></Drinko>
+                <h1 className="absolute top-22 left-[58px] text-white font-bold text-[10px]">Drinko</h1>
+              </div>
             </div>
             <div className="bg-1">
               <div className="relative">
@@ -33,9 +45,24 @@ function App() {
                 <h1 className="absolute top-10 left-7 text-white font-bold -rotate-[30deg]">Potato</h1>
               </div>
             </div>
-            <div className="bg-1">1</div>
-            <div className="bg-1">1</div>
-            <div className="bg-1">1</div>
+            <div className="bg-1">
+              <div className="relative">
+                <Alooz w={110}></Alooz>
+                <h1 className="absolute top-10 left-8 text-[#fffb00] font-bold -rotate-[30deg]">Alooz</h1>
+              </div>
+            </div>
+            <div className="bg-1">
+              <div className="relative">
+                <Lays w={110}></Lays>
+                <h1 className="absolute top-10 left-9 text-white font-bold">Lays</h1>
+              </div>
+            </div>
+            <div className="bg-1">
+              <div className="relative">
+                <Zeros w={110}></Zeros>
+                <h1 className="absolute top-10 left-9 text-white font-bold">Zeros</h1>
+              </div>
+            </div>
           </div>
         </div>
       </div>
