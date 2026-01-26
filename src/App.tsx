@@ -1,12 +1,13 @@
 import Container from "./ui/Container"
 import machine from "./assets/machine.png"
 import { Alooz, BirthDayCake, CakeSlice, CashOut, CircleCake, Coke, Drinko, Lays, Lemon, Mojo, Potato, SmallCake, Zeros } from "./ui/Icons"
-import ten from "../public/notes/10.jpg"
-import twenty from "../public/notes/20.jpg"
-import fifty from "../public/notes/50.jpg"
-import oneHundred from "../public/notes/100.jpg"
-import fiveHundred from "../public/notes/500.jpg"
-import thousand from "../public/notes/1000.jpg"
+import ten from "/notes/10.jpg"
+import twenty from "/notes/20.jpg"
+import fifty from "/notes/50.jpg"
+import oneHundred from "/notes/100.jpg"
+import fiveHundred from "/notes/500.jpg"
+import thousand from "/notes/1000.jpg"
+import { useEffect, useState } from "react"
 
 const card_bg = "bg-1 flex flex-col items-center justify-center"
 const title_bg = "border-b border-dashed w-full my-2 py-1 border-gray-300"
@@ -94,19 +95,45 @@ function App() {
     },
   ]
 
+  const [count, setCount] = useState(0)
+
+  const [ok, setOk] = useState(4)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        if (prev >= notes.length) {
+          clearInterval(interval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Container>
 
       <div className="bg-1 flex">
         {
-          notes.map(note => {
-            return <div className="m-8 -ml-5 -mr-5"><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
+          notes.map((note, index) => {
+            return <div key={index} className="m-8 -ml-5 -mr-5"><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
           })
         }
 
         <CashOut w={200}></CashOut>
       </div>
 
+
+      <div className="flex">
+        {
+          notes.slice(0, count).map((note: any, index) => {
+            return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
+          })
+        }
+      </div>
 
 
       <div className="lg:grid lg:grid-cols-3">
