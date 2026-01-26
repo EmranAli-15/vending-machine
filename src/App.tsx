@@ -97,8 +97,6 @@ function App() {
 
   const [count, setCount] = useState(0)
 
-  const [ok, setOk] = useState(4)
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prev) => {
