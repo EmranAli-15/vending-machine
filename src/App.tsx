@@ -1,11 +1,19 @@
 import Container from "./ui/Container"
 import machine from "./assets/machine.png"
-import { Alooz, BirthDayCake, CakeSlice, CircleCake, Coke, Drinko, Lays, Lemon, Mojo, Potato, SmallCake, Zeros } from "./ui/Icons"
+import { Alooz, BirthDayCake, CakeSlice, CashOut, CircleCake, Coke, Drinko, Lays, Lemon, Mojo, Potato, SmallCake, Zeros } from "./ui/Icons"
+import ten from "../public/notes/10.jpg"
+import twenty from "../public/notes/20.jpg"
+import fifty from "../public/notes/50.jpg"
+import oneHundred from "../public/notes/100.jpg"
+import fiveHundred from "../public/notes/500.jpg"
+import thousand from "../public/notes/1000.jpg"
 
 const card_bg = "bg-1 flex flex-col items-center justify-center"
 const title_bg = "border-b border-dashed w-full my-2 py-1 border-gray-300"
 
 function App() {
+
+  const notes = [ten, twenty, fifty, oneHundred, fiveHundred, thousand]
 
   const data = [
     {
@@ -88,7 +96,17 @@ function App() {
 
   return (
     <Container>
-      <h1 className="bg-1">This is my vending machine</h1>
+
+      <div className="bg-1 flex">
+        {
+          notes.map(note => {
+            return <div className="m-8 -ml-5 -mr-5"><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
+          })
+        }
+
+        <CashOut w={200}></CashOut>
+      </div>
+
 
 
       <div className="lg:grid lg:grid-cols-3">
@@ -96,24 +114,31 @@ function App() {
           <img src={machine} alt="" />
         </div>
 
-        <div className="col-span-2 mt-10 lg:h-[80vh] overflow-y-scroll">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="col-span-2 mt-10 shadow-2xl overflow-auto rounded-lg">
+          <div className="overflow-y-scroll m-5 lg:h-[80vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
 
-            {
-              data.map((item, index) => {
-                return <div key={index} className={card_bg}>
-                  <div className={title_bg}>
-                    <h1 className="text-[#0059ff] text-lg">{item.title}</h1>
-                    <p>Tk : {item.price}</p>
+              {
+                data.map((item, index) => {
+                  return <div key={index} className={card_bg}>
+                    <div className={title_bg}>
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h1 className="text-[#0059ff] text-lg">{item.title}</h1>
+                          <p>Tk : {item.price}</p>
+                        </div>
+                        <button className="btn btn-xs btn-warning text-white">buy</button>
+                      </div>
+                    </div>
+                    <div className="relative">
+                      {item.component}
+                      <h1 className={item?.nameClass}>{item.name}</h1>
+                    </div>
                   </div>
-                  <div className="relative">
-                    {item.component}
-                    <h1 className={item?.nameClass}>{item.name}</h1>
-                  </div>
-                </div>
-              })
-            }
+                })
+              }
 
+            </div>
           </div>
         </div>
       </div>
