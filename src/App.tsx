@@ -1,6 +1,7 @@
 import Container from "./ui/Container"
 import machine from "./assets/machine.png"
 import { Alooz, BirthDayCake, CakeSlice, CashOut, CircleCake, Coke, Drinko, Lays, Lemon, Mojo, Potato, SmallCake, Zeros } from "./ui/Icons"
+import five from "/notes/5.jpg"
 import ten from "/notes/10.jpg"
 import twenty from "/notes/20.jpg"
 import fifty from "/notes/50.jpg"
@@ -14,7 +15,7 @@ const title_bg = "border-b border-dashed w-full my-2 py-1 border-gray-300"
 
 function App() {
 
-  const notes = [ten, twenty, fifty, oneHundred, fiveHundred, thousand]
+  const notes = [five, ten, twenty, fifty, oneHundred, fiveHundred, thousand]
 
   const data = [
     {
@@ -115,28 +116,41 @@ function App() {
     <Container>
 
       <div className="bg-1 flex">
-        {
-          notes.map((note, index) => {
-            return <div key={index} className="m-8 -ml-5 -mr-5"><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
-          })
-        }
+        <CashOut w={120}></CashOut>
 
-        <CashOut w={200}></CashOut>
+        <div className="flex">
+          {
+            notes.slice(0, count).map((note: any, index) => {
+              return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
+            })
+          }
+        </div>
       </div>
 
 
-      <div className="flex">
-        {
-          notes.slice(0, count).map((note: any, index) => {
-            return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
-          })
-        }
-      </div>
+
 
 
       <div className="lg:grid lg:grid-cols-3">
         <div className="col-span-1">
-          <img src={machine} alt="" />
+          <img className="w-[80%]" src={machine} alt="" />
+          <div className="flex gap-x-10">
+
+
+            <button className="button-4">
+              <span className="text">50 <br />Tk</span>
+            </button>
+            <button className="button-4">
+              <span className="text">100 <br />Tk</span>
+            </button>
+            <button className="button-4">
+              <span className="text">500 <br />Tk</span>
+            </button>
+            <button className="button-4">
+              <span className="text">1000 <br />Tk</span>
+            </button>
+
+          </div>
         </div>
 
         <div className="col-span-2 mt-10 shadow-2xl overflow-auto rounded-lg">
