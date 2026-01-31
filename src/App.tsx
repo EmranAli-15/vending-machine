@@ -134,22 +134,20 @@ function App() {
       <div className="lg:grid lg:grid-cols-3">
         <div className="col-span-1">
           <img className="w-[80%]" src={machine} alt="" />
-          <div className="flex gap-x-10">
-
-
-            <button className="button-4">
-              <span className="text">50 <br />Tk</span>
+          <h1 className="border-b mx-5 my-5 border-dashed border-gray-300 text-center">Cash in from here</h1>
+          <div className="flex justify-center gap-x-5">
+            <button className="btn btn-warning">
+              <span>50 <br />Tk</span>
             </button>
-            <button className="button-4">
-              <span className="text">100 <br />Tk</span>
+            <button className="btn btn-warning">
+              <span>100 <br />Tk</span>
             </button>
-            <button className="button-4">
-              <span className="text">500 <br />Tk</span>
+            <button className="btn btn-warning">
+              <span>500 <br />Tk</span>
             </button>
-            <button className="button-4">
-              <span className="text">1000 <br />Tk</span>
+            <button className="btn btn-warning">
+              <span>1000 <br />Tk</span>
             </button>
-
           </div>
         </div>
 
@@ -166,7 +164,7 @@ function App() {
                           <h1 className="text-[#0059ff] text-lg">{item.title}</h1>
                           <p>Tk : {item.price}</p>
                         </div>
-                        <button className="btn btn-xs btn-warning text-white">buy</button>
+                        <button className="btn btn-xs btn-warning">buy</button>
                       </div>
                     </div>
                     <div className="relative">
