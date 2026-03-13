@@ -12,92 +12,95 @@ import { useEffect, useState } from "react"
 
 const card_bg = "bg-1 flex flex-col items-center justify-center"
 const title_bg = "border-b border-dashed w-full my-2 py-1 border-gray-300"
+const data = [
+  {
+    component: <Coke w={150}></Coke>,
+    title: "Coka~Cola",
+    name: "Coka~Cola",
+    nameClass: "absolute top-23 left-[49px] text-white font-bold text-[10px]",
+    price: 40
+  },
+  {
+    component: <Mojo w={150}></Mojo>,
+    title: "Mojo",
+    name: "Mojo",
+    nameClass: "absolute top-23 left-[63px] text-white font-bold text-[10px]",
+    price: 35
+  },
+  {
+    component: <Lemon w={150}></Lemon>,
+    title: "Lemon",
+    name: "Lemon",
+    nameClass: "absolute top-23 left-[58px] text-white font-bold text-[10px]",
+    price: 35
+  },
+  {
+    component: <Drinko w={150}></Drinko>,
+    title: "Drinko",
+    name: "Drinko",
+    nameClass: "absolute top-22 left-[58px] text-white font-bold text-[10px]",
+    price: 30
+  },
+  {
+    component: <Potato w={110}></Potato>,
+    title: "Potato Crackers",
+    name: "Potato",
+    nameClass: "absolute top-10 left-7 text-white font-bold -rotate-[30deg]",
+    price: 10
+  },
+  {
+    component: <Zeros w={110}></Zeros>,
+    title: "Zeros Chips",
+    name: "Zeros",
+    nameClass: "absolute top-10 left-9 text-white font-bold",
+    price: 25
+  },
+  {
+    component: <Alooz w={110}></Alooz>,
+    title: "Alooz",
+    name: "Alooz",
+    nameClass: "absolute top-10 left-8 text-[#fffb00] font-bold -rotate-[30deg]",
+    price: 30
+  },
+  {
+    component: <Lays w={110}></Lays>,
+    title: "Lays",
+    name: "Lays",
+    nameClass: "absolute top-10 left-9 text-white font-bold",
+    price: 30
+  },
+  {
+    component: <SmallCake w={110}></SmallCake>,
+    title: "Small Cake",
+    price: 120
+  },
+  {
+    component: <BirthDayCake w={110}></BirthDayCake>,
+    title: "Birthday Cake",
+    price: 300
+  },
+  {
+    component: <CakeSlice w={110}></CakeSlice>,
+    title: "Cake Slice",
+    price: 80
+  },
+  {
+    component: <CircleCake w={110}></CircleCake>,
+    title: "Circle Cake",
+    price: 130
+  },
+]
+
 
 function App() {
 
   const notes = [five, ten, twenty, fifty, oneHundred, fiveHundred, thousand]
 
-  const data = [
-    {
-      component: <Coke w={150}></Coke>,
-      title: "Coka~Cola",
-      name: "Coka~Cola",
-      nameClass: "absolute top-23 left-[49px] text-white font-bold text-[10px]",
-      price: 40
-    },
-    {
-      component: <Mojo w={150}></Mojo>,
-      title: "Mojo",
-      name: "Mojo",
-      nameClass: "absolute top-23 left-[63px] text-white font-bold text-[10px]",
-      price: 35
-    },
-    {
-      component: <Lemon w={150}></Lemon>,
-      title: "Lemon",
-      name: "Lemon",
-      nameClass: "absolute top-23 left-[58px] text-white font-bold text-[10px]",
-      price: 35
-    },
-    {
-      component: <Drinko w={150}></Drinko>,
-      title: "Drinko",
-      name: "Drinko",
-      nameClass: "absolute top-22 left-[58px] text-white font-bold text-[10px]",
-      price: 30
-    },
-    {
-      component: <Potato w={110}></Potato>,
-      title: "Potato Crackers",
-      name: "Potato",
-      nameClass: "absolute top-10 left-7 text-white font-bold -rotate-[30deg]",
-      price: 10
-    },
-    {
-      component: <Zeros w={110}></Zeros>,
-      title: "Zeros Chips",
-      name: "Zeros",
-      nameClass: "absolute top-10 left-9 text-white font-bold",
-      price: 25
-    },
-    {
-      component: <Alooz w={110}></Alooz>,
-      title: "Alooz",
-      name: "Alooz",
-      nameClass: "absolute top-10 left-8 text-[#fffb00] font-bold -rotate-[30deg]",
-      price: 30
-    },
-    {
-      component: <Lays w={110}></Lays>,
-      title: "Lays",
-      name: "Lays",
-      nameClass: "absolute top-10 left-9 text-white font-bold",
-      price: 30
-    },
-    {
-      component: <SmallCake w={110}></SmallCake>,
-      title: "Small Cake",
-      price: 120
-    },
-    {
-      component: <BirthDayCake w={110}></BirthDayCake>,
-      title: "Birthday Cake",
-      price: 300
-    },
-    {
-      component: <CakeSlice w={110}></CakeSlice>,
-      title: "Cake Slice",
-      price: 80
-    },
-    {
-      component: <CircleCake w={110}></CircleCake>,
-      title: "Circle Cake",
-      price: 130
-    },
-  ]
 
+
+
+  // Back notes after baught a product
   const [count, setCount] = useState(0)
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prev) => {
@@ -111,6 +114,14 @@ function App() {
 
     return () => clearInterval(interval);
   }, []);
+  // Back notes after baught a product
+
+
+
+
+
+  // prepare to buy a product
+  const [insertedNote, setInsertedNote] = useState(0)
 
   return (
     <Container>
@@ -136,16 +147,19 @@ function App() {
           <img className="w-[80%]" src={machine} alt="" />
           <h1 className="border-b mx-5 my-5 border-dashed border-gray-300 text-center">Cash in from here</h1>
           <div className="flex justify-center gap-x-5">
-            <button className="btn btn-warning">
+            <button onClick={() => setInsertedNote(20)} className={`${insertedNote && insertedNote !== 20 ? 'btn-disabled' : 'btn-warning'} btn`}>
+              <span>20 <br />Tk</span>
+            </button>
+            <button onClick={() => setInsertedNote(50)} className={`${insertedNote && insertedNote !== 50 ? 'btn-disabled' : 'btn-warning'} btn`}>
               <span>50 <br />Tk</span>
             </button>
-            <button className="btn btn-warning">
+            <button onClick={() => setInsertedNote(100)} className={`${insertedNote && insertedNote !== 100 ? 'btn-disabled' : 'btn-warning'} btn`}>
               <span>100 <br />Tk</span>
             </button>
-            <button className="btn btn-warning">
+            <button onClick={() => setInsertedNote(500)} className={`${insertedNote && insertedNote !== 500 ? 'btn-disabled' : 'btn-warning'} btn`}>
               <span>500 <br />Tk</span>
             </button>
-            <button className="btn btn-warning">
+            <button onClick={() => setInsertedNote(1000)} className={`${insertedNote && insertedNote !== 1000 ? 'btn-disabled' : 'btn-warning'} btn`}>
               <span>1000 <br />Tk</span>
             </button>
           </div>
@@ -164,7 +178,7 @@ function App() {
                           <h1 className="text-[#0059ff] text-lg">{item.title}</h1>
                           <p>Tk : {item.price}</p>
                         </div>
-                        <button className="btn btn-xs btn-warning">buy</button>
+                        <button className={`${insertedNote >= item.price && insertedNote ? "btn-warning" : "btn-disabled"} btn btn-xs`}>buy</button>
                       </div>
                     </div>
                     <div className="relative">
