@@ -10,6 +10,8 @@ import fiveHundred from "/notes/500.jpg"
 import thousand from "/notes/1000.jpg"
 import { useEffect, useState } from "react"
 
+import { Engine } from "./utils/engine"
+
 const card_bg = "bg-1 flex flex-col items-center justify-center"
 const title_bg = "border-b border-dashed w-full my-2 py-1 border-gray-300"
 const data = [
@@ -93,8 +95,9 @@ const data = [
 
 
 function App() {
-
-  const notes = [five, ten, twenty, fifty, oneHundred, fiveHundred, thousand]
+  const serialNotes = [five, ten, twenty, fifty, oneHundred, fiveHundred, thousand];
+  const [notes, setNotes] = useState<any[]>([]);
+  const [total, setTotal] = useState(0);
 
 
 
@@ -110,32 +113,42 @@ function App() {
         }
         return prev + 1;
       });
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [notes]);
   // Back notes after baught a product
 
 
-
-
-
   // prepare to buy a product
-  const [insertedNote, setInsertedNote] = useState(0)
+  const [insertedNote, setInsertedNote] = useState(0);
+
+  const handleBuyProduct = (item: any) => {
+    setNotes(() => []);
+    const { change } = Engine(item.price, insertedNote);
+
+    setNotes(() => change.change);
+    setTotal(change.total);
+    setInsertedNote(0)
+  }
 
   return (
     <Container>
 
-      <div className="bg-1 flex">
-        <CashOut w={120}></CashOut>
-
+      <div className="bg-1 flex justify-between items-center">
         <div className="flex">
-          {
-            notes.slice(0, count).map((note: any, index) => {
-              return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={note} alt="" /></div>
-            })
-          }
+          <CashOut w={120}></CashOut>
+
+          <div className="flex">
+            {
+              notes.slice(0, count).map((note: any, index: any) => {
+                return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={serialNotes[note]} alt="" /></div>
+              })
+            }
+          </div>
         </div>
+
+        {total && <h1 className="text-4xl font-bold">You received: {total}</h1>}
       </div>
 
 
@@ -178,7 +191,12 @@ function App() {
                           <h1 className="text-[#0059ff] text-lg">{item.title}</h1>
                           <p>Tk : {item.price}</p>
                         </div>
-                        <button className={`${insertedNote >= item.price && insertedNote ? "btn-warning" : "btn-disabled"} btn btn-xs`}>buy</button>
+                        <button
+                          onClick={() => handleBuyProduct(item)}
+                          className={`${insertedNote >= item.price && insertedNote ? "btn-warning" : "btn-disabled"} btn btn-xs`}
+                        >
+                          buy
+                        </button>
                       </div>
                     </div>
                     <div className="relative">

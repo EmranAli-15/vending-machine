@@ -1,5 +1,6 @@
 const makeDue = (due, cid) => {
     let change = [];
+    let total = 0;
     let drawer = [
         ["FIVE", 5],
         ["TEN", 10],
@@ -17,25 +18,28 @@ const makeDue = (due, cid) => {
         let amountUsed = 0;
 
         while (due >= unitValue && amountAvailable >= unitValue) {
-            due = Math.round((due - unitValue) * 100) / 100;
-            amountAvailable = Math.round((amountAvailable - unitValue) * 100) / 100;
-            amountUsed = Math.round((amountUsed + unitValue) * 100) / 100;
+            due = due - unitValue;
+            amountAvailable = amountAvailable - unitValue;
+            amountUsed++;
+            total = total+drawer[i][1];
         }
 
         if (amountUsed > 0) {
-            change.push([name, amountUsed]);
+            for (let j = amountUsed; j >= 1; j--) {
+                change.push(i);
+            }
         }
     }
 
     // If we couldn't return full change
     if (due > 0) return null;
 
-    return change;
+    return {change, total};
 };
 
 const checkCashRegister = (price, cash, cid) => {
-    let due = Math.round((cash - price) * 100) / 100;
-    let totalCid = Math.round(cid.reduce((sum, item) => sum + item[1], 0) * 100) / 100;
+    let due = cash - price;
+    let totalCid = cid.reduce((sum, item) => sum + item[1], 0)
 
     if (due > totalCid) {
         return { status: "INSUFFICIENT_FUNDS", change: [] };
@@ -55,17 +59,20 @@ const checkCashRegister = (price, cash, cid) => {
 };
 
 
-const res = checkCashRegister(
-    5,
-    50,
-    [
-        ["FIVE", 50],
-        ["TEN", 100],
-        ["TWENTY", 200],
-        ["FIFTY", 500],
-        ["ONE_HUNDRED", 1000],
-        ["FIVE_HUNDRED", 5000],
-        ["THOUSAND", 10000]
-    ]
-);
-console.log(res)
+
+export const Engine = (price, cash) => {
+    const res = checkCashRegister(
+        price,
+        cash,
+        [
+            ["FIVE", 50],
+            ["TEN", 100],
+            ["TWENTY", 200],
+            ["FIFTY", 500],
+            ["ONE_HUNDRED", 1000],
+            ["FIVE_HUNDRED", 5000],
+            ["THOUSAND", 10000]
+        ]
+    );
+    return res;
+};
