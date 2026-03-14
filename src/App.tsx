@@ -148,7 +148,7 @@ function App() {
           </div>
         </div>
 
-        {total && <h1 className="text-4xl font-bold">You received: {total}</h1>}
+        {total ? <h1 className="text-4xl font-bold">You received: {total}</h1> : ""}
       </div>
 
 
