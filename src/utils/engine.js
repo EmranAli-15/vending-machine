@@ -65,13 +65,13 @@ export const Engine = (price, cash) => {
         price,
         cash,
         [
-            ["FIVE", 50],
-            ["TEN", 100],
-            ["TWENTY", 200],
-            ["FIFTY", 500],
-            ["ONE_HUNDRED", 1000],
-            ["FIVE_HUNDRED", 5000],
-            ["THOUSAND", 10000]
+            ["FIVE", 500],
+            ["TEN", 1000],
+            ["TWENTY", 2000],
+            ["FIFTY", 5000],
+            ["ONE_HUNDRED", 10000],
+            ["FIVE_HUNDRED", 50000],
+            ["THOUSAND", 100000]
         ]
     );
     return res;

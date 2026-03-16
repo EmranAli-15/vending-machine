@@ -142,7 +142,7 @@ function App() {
           <div className="flex">
             {
               notes.slice(0, count).map((note: any, index: any) => {
-                return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-5`}><img className="h-15 w-30 rotate-90" src={serialNotes[note]} alt="" /></div>
+                return <div key={index} className={`${index == 0 ? '-ml-5' : '-ml-16'} m-8 -mr-1`}><img className="h-15 w-30 rotate-90" src={serialNotes[note]} alt="" /></div>
               })
             }
           </div>

@@ -1,0 +1,1 @@
+export function Engine(price: number, cash: number): any;
